@@ -15,8 +15,9 @@ import { IDepartment } from "@/types";
 import { Button, Col, Row, message } from "antd";
 
 const EditAdminPage = ({ params }: any) => {
+  console.log("params", params);
   const { data: adminData, isLoading: loading } = useAdminQuery(params?.id);
-  //   console.log(adminData);
+  console.log(adminData);
   const [updateAdmin] = useUpdateAdminMutation();
 
   const { data, isLoading } = useDepartmentsQuery({ limit: 100, page: 1 });

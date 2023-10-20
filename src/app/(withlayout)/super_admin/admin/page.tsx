@@ -43,6 +43,7 @@ const AdminPage = () => {
     query["searchTerm"] = debouncedSearchTerm;
   }
   const { data, isLoading } = useAdminsQuery({ ...query });
+  console.log(data);
 
   const admins = data?.admins;
   const meta = data?.meta;
@@ -105,7 +106,7 @@ const AdminPage = () => {
                 style={{
                   margin: "0px 5px",
                 }}
-                onClick={() => console.log(data)}
+                // onClick={() => console.log(data)}
                 type="primary"
               >
                 <EditOutlined />
@@ -127,11 +128,13 @@ const AdminPage = () => {
       },
     },
   ];
+
   const onPaginationChange = (page: number, pageSize: number) => {
     console.log("Page:", page, "PageSize:", pageSize);
     setPage(page);
     setSize(pageSize);
   };
+
   const onTableChange = (pagination: any, filter: any, sorter: any) => {
     const { order, field } = sorter;
     // console.log(order, field);

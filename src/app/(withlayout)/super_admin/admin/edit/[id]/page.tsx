@@ -8,16 +8,14 @@ import FormTextArea from "@/components/Forms/FormTextArea";
 import UMBreadCrumb from "@/components/ui/UMBreadCrumb";
 import { bloodGroupOptions, genderOptions } from "@/constants/global";
 import { useAdminQuery, useUpdateAdminMutation } from "@/redux/api/adminApi";
-
 import { useDepartmentsQuery } from "@/redux/api/departmentApi";
 import { IDepartment } from "@/types";
 
 import { Button, Col, Row, message } from "antd";
 
 const EditAdminPage = ({ params }: any) => {
-  console.log("params", params);
   const { data: adminData, isLoading: loading } = useAdminQuery(params?.id);
-  console.log(adminData);
+  //   console.log(adminData);
   const [updateAdmin] = useUpdateAdminMutation();
 
   const { data, isLoading } = useDepartmentsQuery({ limit: 100, page: 1 });

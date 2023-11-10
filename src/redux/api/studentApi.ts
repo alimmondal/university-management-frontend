@@ -1,6 +1,6 @@
 import { IMeta, IMyCourse, IStudent } from "@/types";
-import { tagTypes } from "../tag-types";
 import { baseApi } from "./baseApi";
+import { tagTypes } from "../tag-types";
 
 const STUDENT_URL = "/students";
 export const studentApi = baseApi.injectEndpoints({

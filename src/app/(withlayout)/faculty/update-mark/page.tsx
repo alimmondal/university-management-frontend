@@ -7,7 +7,6 @@ import { useUpdateMarksMutation } from "@/redux/api/studentEnrollCourseMarkApi";
 import { Button, Col, Row, message } from "antd";
 
 const UpdateMarksPage = ({ searchParams }: Record<string, any>) => {
-  console.log(searchParams);
   const {
     examType,
     marks,

@@ -1,21 +1,22 @@
 "use client";
-import ActionBar from "@/components/ui/ActionBar";
+import {
+  DeleteOutlined,
+  EditOutlined,
+  EyeOutlined,
+  ReloadOutlined,
+} from "@ant-design/icons";
 import UMBreadCrumb from "@/components/ui/UMBreadCrumb";
 import UMTable from "@/components/ui/UMTable";
 import {
   useDeleteDepartmentMutation,
   useDepartmentsQuery,
 } from "@/redux/api/departmentApi";
-import { useDebounced } from "@/redux/hooks";
-import {
-  DeleteOutlined,
-  EditOutlined,
-  ReloadOutlined,
-} from "@ant-design/icons";
 import { Button, Input, message } from "antd";
-import dayjs from "dayjs";
 import Link from "next/link";
 import { useState } from "react";
+import ActionBar from "@/components/ui/ActionBar";
+import { useDebounced } from "@/redux/hooks";
+import dayjs from "dayjs";
 
 const ManageDepartmentPage = () => {
   const query: Record<string, any> = {};
@@ -42,7 +43,6 @@ const ManageDepartmentPage = () => {
     query["searchTerm"] = debouncedTerm;
   }
   const { data, isLoading } = useDepartmentsQuery({ ...query });
-  console.log("Departments", data);
 
   const departments = data?.departments;
   const meta = data?.meta;

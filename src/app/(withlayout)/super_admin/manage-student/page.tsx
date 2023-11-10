@@ -1,19 +1,21 @@
 "use client";
 import ActionBar from "@/components/ui/ActionBar";
 import UMBreadCrumb from "@/components/ui/UMBreadCrumb";
-import UMTable from "@/components/ui/UMTable";
-import { useStudentsQuery } from "@/redux/api/studentApi";
-import { useDebounced } from "@/redux/hooks";
+import { Button, Input } from "antd";
+import Link from "next/link";
 import {
   DeleteOutlined,
   EditOutlined,
-  EyeOutlined,
   ReloadOutlined,
+  EyeOutlined,
 } from "@ant-design/icons";
-import { Button, Input } from "antd";
-import dayjs from "dayjs";
-import Link from "next/link";
 import { useState } from "react";
+import { useDebounced } from "@/redux/hooks";
+import UMTable from "@/components/ui/UMTable";
+import { IDepartment } from "@/types";
+import dayjs from "dayjs";
+import { useFacultiesQuery } from "@/redux/api/facultyApi";
+import { useStudentsQuery } from "@/redux/api/studentApi";
 
 const StudentPage = () => {
   const query: Record<string, any> = {};

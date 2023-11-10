@@ -1,16 +1,16 @@
 "use client";
 import ActionBar from "@/components/ui/ActionBar";
 import UMBreadCrumb from "@/components/ui/UMBreadCrumb";
+import { Button, Input } from "antd";
+import { ReloadOutlined } from "@ant-design/icons";
+import { useState } from "react";
+import { useDebounced } from "@/redux/hooks";
 import UMTable from "@/components/ui/UMTable";
 import { useFacultyCourseStudentsQuery } from "@/redux/api/facultyApi";
-import { useDebounced } from "@/redux/hooks";
-import { ReloadOutlined } from "@ant-design/icons";
-import { Button, Input } from "antd";
 import Link from "next/link";
-import { useState } from "react";
 
 const FacultyCoursesStudentsPage = ({ searchParams }: Record<string, any>) => {
-  // console.log("search", searchParams);
+  //   console.log(searchParams);
   const { courseId, offeredCourseSectionId } = searchParams;
 
   const query: Record<string, any> = {};
@@ -42,10 +42,11 @@ const FacultyCoursesStudentsPage = ({ searchParams }: Record<string, any>) => {
     query["searchTerm"] = debouncedSearchTerm;
   }
   const { data, isLoading } = useFacultyCourseStudentsQuery({ ...query });
-  // console.log(data);
 
   const myCourseStudents = data?.myCourseStudents;
   const meta = data?.meta;
+
+  //   console.log(myCourseStudents);
 
   const columns = [
     {

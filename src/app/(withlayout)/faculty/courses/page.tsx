@@ -1,14 +1,14 @@
 "use client";
 import ActionBar from "@/components/ui/ActionBar";
 import UMBreadCrumb from "@/components/ui/UMBreadCrumb";
-import UMTable from "@/components/ui/UMTable";
-import { useFacultyCoursesQuery } from "@/redux/api/facultyApi";
-import { useDebounced } from "@/redux/hooks";
-import { IOfferedCourseSchedule, IOfferedCourseSection } from "@/types";
-import { ReloadOutlined } from "@ant-design/icons";
 import { Button, Input } from "antd";
 import Link from "next/link";
+import { ReloadOutlined } from "@ant-design/icons";
 import { useState } from "react";
+import { useDebounced } from "@/redux/hooks";
+import UMTable from "@/components/ui/UMTable";
+import { IOfferedCourseSchedule, IOfferedCourseSection } from "@/types";
+import { useFacultyCoursesQuery } from "@/redux/api/facultyApi";
 
 const FacultyCoursesPage = () => {
   const query: Record<string, any> = {};
@@ -32,12 +32,11 @@ const FacultyCoursesPage = () => {
   if (!!debouncedSearchTerm) {
     query["searchTerm"] = debouncedSearchTerm;
   }
-
   const { data, isLoading } = useFacultyCoursesQuery({ ...query });
-  // console.log(data);
 
   const myCourses = data?.myCourses;
   const meta = data?.meta;
+
   // console.log(myCourses);
 
   const columns = [
@@ -149,7 +148,7 @@ const FacultyCoursesPage = () => {
           }}
         />
         <div>
-          {(sortBy || !!sortOrder || !!searchTerm) && (
+          {(!!sortBy || !!sortOrder || !!searchTerm) && (
             <Button
               style={{ margin: "0px 5px" }}
               type="primary"

@@ -1,24 +1,28 @@
 "use client";
 import ActionBar from "@/components/ui/ActionBar";
-import BaseRow from "@/components/ui/BaseRow";
 import UMBreadCrumb from "@/components/ui/UMBreadCrumb";
+import { Button, Input, Tag, message } from "antd";
+import Link from "next/link";
+import {
+  DeleteOutlined,
+  EditOutlined,
+  FilterOutlined,
+  ReloadOutlined,
+  EyeOutlined,
+} from "@ant-design/icons";
+import { Fragment, useState } from "react";
+import { useDebounced } from "@/redux/hooks";
 import UMTable from "@/components/ui/UMTable";
+import dayjs from "dayjs";
+import BaseRow from "@/components/ui/BaseRow";
 import { ExamType } from "@/constants/global";
 import {
   useStudentEnrolledCourseMarksQuery,
   useUpdateFinalMarksMutation,
 } from "@/redux/api/studentEnrollCourseMarkApi";
-import { useDebounced } from "@/redux/hooks";
 import { IStudentEnrolledCourseMark } from "@/types";
-import { ReloadOutlined } from "@ant-design/icons";
-import { Button, Input, Tag, message } from "antd";
-import dayjs from "dayjs";
-import Link from "next/link";
-import { Fragment, useState } from "react";
 
 const StudentResultPage = ({ searchParams }: Record<string, any>) => {
-  // console.log("search", searchParams);
-
   const [updateFinalMarks] = useUpdateFinalMarksMutation();
   const [academicSemesterId, setAcademicSemesterId] = useState<string>();
 
@@ -53,7 +57,6 @@ const StudentResultPage = ({ searchParams }: Record<string, any>) => {
   }
 
   const { data, isLoading } = useStudentEnrolledCourseMarksQuery({ ...query });
-  // console.log("marks data", data);
 
   const studentEnrolledCourseMarks = data?.studentEnrolledCourseMarks;
   const meta = data?.meta;
@@ -61,7 +64,7 @@ const StudentResultPage = ({ searchParams }: Record<string, any>) => {
   // console.log(studentEnrolledCourseMarks);
 
   const handleUpdateFinalMarks = async (values: any) => {
-    console.log("values", values);
+    // console.log(values);
     try {
       const res = await updateFinalMarks(values);
       if (res) {

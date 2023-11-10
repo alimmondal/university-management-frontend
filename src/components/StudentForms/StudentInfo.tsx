@@ -1,12 +1,17 @@
 "use client";
-import { genderOptions } from "@/constants/global";
 import { Col, Row } from "antd";
-import ACDepartmentField from "../Forms/ACDepartmentField";
-import ACFacultyField from "../Forms/ACFacultyField";
-import ACSemesterField from "../Forms/ACSemesterField";
 import FormInput from "../Forms/FormInput";
 import FormSelectField from "../Forms/FormSelectField";
 import UploadImage from "../ui/UploadImage";
+import {
+  acDepartmentOptions,
+  acSemesterOptions,
+  facultyOptions,
+  genderOptions,
+} from "@/constants/global";
+import ACDepartmentField from "../Forms/ACDepartmentField";
+import ACFacultyField from "../Forms/ACFacultyField";
+import ACSemesterField from "../Forms/ACSemesterField";
 
 const StudentInfo = () => {
   return (

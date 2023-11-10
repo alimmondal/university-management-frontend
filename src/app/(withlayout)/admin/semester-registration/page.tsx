@@ -1,24 +1,24 @@
 "use client";
-import UMBreadCrumb from "@/components/ui/UMBreadCrumb";
-import UMTable from "@/components/ui/UMTable";
 import {
   DeleteOutlined,
   EditOutlined,
-  PlayCircleOutlined,
   ReloadOutlined,
+  PlayCircleOutlined,
 } from "@ant-design/icons";
+import UMBreadCrumb from "@/components/ui/UMBreadCrumb";
+import UMTable from "@/components/ui/UMTable";
 
+import { Button, Input, Tooltip, message } from "antd";
+import Link from "next/link";
+import { useState } from "react";
 import ActionBar from "@/components/ui/ActionBar";
+import { useDebounced } from "@/redux/hooks";
+import dayjs from "dayjs";
 import {
   useDeleteSemesterRegistrationsMutation,
   useSemesterRegistrationsQuery,
   useStartNewSemesterMutation,
 } from "@/redux/api/semesterRegistrationApi";
-import { useDebounced } from "@/redux/hooks";
-import { Button, Input, Tooltip, message } from "antd";
-import dayjs from "dayjs";
-import Link from "next/link";
-import { useState } from "react";
 
 const SemesterRegistrationPage = () => {
   const query: Record<string, any> = {};
@@ -51,14 +51,12 @@ const SemesterRegistrationPage = () => {
 
   const semesterRegistrations = data?.semesterRegistrations;
   const meta = data?.meta;
-  // console.log(data);
+  // console.log(semesterRegistrations);
 
   const handleStartSemester = async (id: string) => {
-    // console.log(id);
     try {
       const res = await startNewSemester(id).unwrap();
-      console.log(res);
-      // message.success(res);
+      message.success(res);
     } catch (err: any) {
       message.error(err?.message);
     }
@@ -128,7 +126,7 @@ const SemesterRegistrationPage = () => {
                 }}
                 type="primary"
               >
-                <EditOutlined onClick={() => console.log(data?.id)} />
+                <EditOutlined />
               </Button>
             </Link>
             {data?.status === "ENDED" && (

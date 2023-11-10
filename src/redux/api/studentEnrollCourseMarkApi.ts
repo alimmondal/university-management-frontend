@@ -1,6 +1,6 @@
 import { IMeta, IStudentEnrolledCourseMark } from "@/types";
-import { tagTypes } from "../tag-types";
 import { baseApi } from "./baseApi";
+import { tagTypes } from "../tag-types";
 
 export const BASE_STUDENT_COURSE_MARKS = "/student-enrolled-course-marks";
 
@@ -25,7 +25,6 @@ const studentEnrollCourseMarkApi = baseApi.injectEndpoints({
       },
       providesTags: [tagTypes.student],
     }),
-
     studentEnrolledCourseMarks: build.query({
       query: (arg: Record<string, any>) => {
         return {
@@ -45,7 +44,6 @@ const studentEnrollCourseMarkApi = baseApi.injectEndpoints({
       },
       providesTags: [tagTypes.student],
     }),
-
     updateMarks: build.mutation({
       query: (data) => ({
         url: `${BASE_STUDENT_COURSE_MARKS}/update-marks`,
@@ -54,7 +52,6 @@ const studentEnrollCourseMarkApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: [tagTypes.student],
     }),
-
     updateFinalMarks: build.mutation({
       query: (data) => ({
         url: `${BASE_STUDENT_COURSE_MARKS}/update-course-final-marks`,

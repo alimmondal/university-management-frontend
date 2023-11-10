@@ -1,6 +1,6 @@
 import { ICoreFaculty, IFaculty, IFacultyCourse, IMeta } from "@/types";
-import { tagTypes } from "../tag-types";
 import { baseApi } from "./baseApi";
+import { tagTypes } from "../tag-types";
 
 const BASE_FACULTY_API_URL = "/faculties";
 
@@ -23,7 +23,6 @@ export const facultyApi = baseApi.injectEndpoints({
       },
       providesTags: [tagTypes.faculty],
     }),
-
     // get single faculty user endpoint
     faculty: build.query({
       query: (id: string | string[] | undefined) => ({
@@ -32,7 +31,6 @@ export const facultyApi = baseApi.injectEndpoints({
       }),
       providesTags: [tagTypes.faculty],
     }),
-
     // create faculty user endpoint
     addFacultyWithFormData: build.mutation({
       query: (data) => ({

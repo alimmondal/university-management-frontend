@@ -1,21 +1,22 @@
 "use client";
 import ActionBar from "@/components/ui/ActionBar";
 import UMBreadCrumb from "@/components/ui/UMBreadCrumb";
-import UMModal from "@/components/ui/UMModal";
-import UMTable from "@/components/ui/UMTable";
-import { useAdminsQuery, useDeleteAdminMutation } from "@/redux/api/adminApi";
-import { useDebounced } from "@/redux/hooks";
-import { IDepartment } from "@/types";
+import { Button, Input, message } from "antd";
+import Link from "next/link";
 import {
   DeleteOutlined,
   EditOutlined,
-  EyeOutlined,
+  FilterOutlined,
   ReloadOutlined,
+  EyeOutlined,
 } from "@ant-design/icons";
-import { Button, Input, message } from "antd";
-import dayjs from "dayjs";
-import Link from "next/link";
 import { useState } from "react";
+import { useDebounced } from "@/redux/hooks";
+import UMTable from "@/components/ui/UMTable";
+import { useAdminsQuery, useDeleteAdminMutation } from "@/redux/api/adminApi";
+import { IDepartment } from "@/types";
+import dayjs from "dayjs";
+import UMModal from "@/components/ui/UMModal";
 
 const AdminPage = () => {
   const query: Record<string, any> = {};
@@ -43,7 +44,6 @@ const AdminPage = () => {
     query["searchTerm"] = debouncedSearchTerm;
   }
   const { data, isLoading } = useAdminsQuery({ ...query });
-  console.log(data);
 
   const admins = data?.admins;
   const meta = data?.meta;
@@ -106,7 +106,7 @@ const AdminPage = () => {
                 style={{
                   margin: "0px 5px",
                 }}
-                // onClick={() => console.log(data)}
+                onClick={() => console.log(data)}
                 type="primary"
               >
                 <EditOutlined />
@@ -128,13 +128,11 @@ const AdminPage = () => {
       },
     },
   ];
-
   const onPaginationChange = (page: number, pageSize: number) => {
     console.log("Page:", page, "PageSize:", pageSize);
     setPage(page);
     setSize(pageSize);
   };
-
   const onTableChange = (pagination: any, filter: any, sorter: any) => {
     const { order, field } = sorter;
     // console.log(order, field);
